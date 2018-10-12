@@ -66,6 +66,7 @@ void ass_font_set_transform(ASS_Font *font, double scale_x,
                             double scale_y, FT_Vector *v);
 void ass_face_set_size(FT_Face face, double size);
 void ass_font_set_size(ASS_Font *font, double size);
+int ass_face_get_weight(FT_Face face);
 void ass_font_get_asc_desc(ASS_Font *font, uint32_t ch, int *asc,
                            int *desc);
 int ass_font_get_index(ASS_FontSelector *fontsel, ASS_Font *font,
