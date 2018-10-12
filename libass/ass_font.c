@@ -584,8 +584,7 @@ FT_Glyph ass_font_get_glyph(ASS_Font *font, uint32_t ch, int face_index,
         FT_GlyphSlot_Oblique(face->glyph);
     }
 
-    if (!(face->style_flags & FT_STYLE_FLAG_BOLD) &&
-        (font->desc.bold > 400)) {
+    if (font->desc.bold > ass_face_get_weight(face) + 150) {
         ass_glyph_embolden(face->glyph);
     }
     error = FT_Get_Glyph(face->glyph, &glyph);
