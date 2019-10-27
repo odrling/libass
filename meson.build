@@ -201,7 +201,15 @@ conf.set('PACKAGE_VERSION', meson.project_version())
 
 config_h = configure_file(output: 'config.h', configuration: conf)
 
-incs = include_directories('.', 'libass')
+incs = [include_directories('.', 'libass')]
+if host_machine.system() == 'windows'
+    dirent_path = get_option('dirent_path')
+    if dirent_path != ''
+        incs += include_directories(dirent_path / 'include')
+    else
+        error('Path to Dirent-compatible interface (dirent_path) must be defined on Windows.')
+    endif
+endif
 
 subdir('libass')
 if get_option('test')
