@@ -31,7 +31,15 @@
 #include <limits.h>
 #include <ft2build.h>
 #include <sys/types.h>
+#ifdef WITH_DIRENT
 #include <dirent.h>
+#else
+typedef struct DIR { int dummy; } DIR;
+typedef struct dirent { char *d_name; } dirent;
+static inline DIR *opendir(const char *x) { return 0; }
+static inline struct dirent *readdir(DIR *x) { return 0; }
+static inline void closedir(DIR *x) { }
+#endif
 #include FT_FREETYPE_H
 #include FT_SFNT_NAMES_H
 #include FT_TRUETYPE_IDS_H

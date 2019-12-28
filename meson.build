@@ -159,6 +159,11 @@ if get_option('test')
     conf.set('CONFIG_LIBPNG', 1)
 endif
 
+# dirent
+if host_machine.system() != 'windows'
+    conf.set('WITH_DIRENT', '1')
+endif
+
 # DirectWrite
 directwrite = false
 if host_machine.system() == 'windows' and not get_option('directwrite').disabled()
